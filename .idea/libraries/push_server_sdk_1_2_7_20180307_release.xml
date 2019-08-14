@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="push-server-sdk-1.2.7.20180307_release">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/push-server-sdk-1.2.7.20180307_release.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
