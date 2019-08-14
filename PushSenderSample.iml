@@ -42,5 +42,12 @@
     <orderEntry type="library" name="opush-server-sdk-1.0.3" level="project" />
     <orderEntry type="library" name="json-simple-1.1.1" level="project" />
     <orderEntry type="library" name="MiPush_SDK_Server_2_2_21" level="project" />
+    <orderEntry type="library" name="jiguang-common-1.1.5" level="project" />
+    <orderEntry type="library" name="jpush-client-3.3.11" level="project" />
+    <orderEntry type="library" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.7.3" level="project" />
+    <orderEntry type="library" name="slf4j-log4j12-1.7.1" level="project" />
+    <orderEntry type="library" name="netty-all-4.0.0.final" level="project" />
   </component>
 </module>
