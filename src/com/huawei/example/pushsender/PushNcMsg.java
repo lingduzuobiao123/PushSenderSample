@@ -29,15 +29,16 @@ import com.alibaba.fastjson.JSONObject;
 //Push通知栏消息Demo
 //本示例程序中的appId,appSecret,deviceTokens以及appPkgName需要用户自行替换为有效值
 public class PushNcMsg {
-    private static String appSecret = "8dfb22ed0c609a4a1b9defe9b451644b9a97790eb89a3194b29559227dc46115";
-    private static String appId = "101012281";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
-    private static String tokenUrl = "https://login.vmall.com/oauth2/token"; //获取认证Token的URL
+    private static String appSecret = "0e257bbc0f6f84ddf875b488d9150b651ccf0e225e898bb030279d6eb0981dd8";
+    private static String appId = "101075517";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
+//    private static String tokenUrl = "https://login.vmall.com/oauth2/token"; //获取认证Token的URL
+    private static String tokenUrl = "https://login.cloud.huawei.com/oauth2/v2/token";//获取认证Token的URL
     private static String apiUrl = "https://api.push.hicloud.com/pushsend.do"; //应用级消息下发API
     private static String accessToken;//下发通知消息的认证Token
     private static long tokenExpiredTime;  //accessToken的过期时间
 
     public static void main(String[] args) throws IOException {
-        refreshToken();
+//        refreshToken();
         sendPushMessage();
     }
 
@@ -62,7 +63,7 @@ public class PushNcMsg {
         /*PushToken不支持手动编写，需使用客户端的onToken方法获取*/
         JSONArray deviceTokens = new JSONArray();//目标设备Token
 //        deviceTokens.add("AOkqsVa21iVzMWFN71R0Z8yB7X2wpcTSI9T7BYq09BEbHJfM1xQWj-cuCh_x92eoQaTV5DXDPDCeIAnSrAFmW678PpOlT_JGlhJRjWPIsAddYxvjVBxNbNRNcKOo8FqQDQ");
-        deviceTokens.add("0860718038683393300004327900CN01");
+        deviceTokens.add("0860718038683393300004505300CN01");
 //        deviceTokens.add("32345678901234561234567890123456");
 
         JSONObject body = new JSONObject();//仅通知栏消息需要设置标题和内容，透传消息key和value为用户自定义
@@ -71,7 +72,7 @@ public class PushNcMsg {
         body.put("content", "content:" + time);//消息内容体
 
         JSONObject param = new JSONObject();
-        param.put("appPkgName", "com.huawei.hms.hmsdemo");//定义需要打开的appPkgName
+        param.put("appPkgName", "com.jsy.secret");//定义需要打开的appPkgName
 
         JSONObject action = new JSONObject();
         action.put("type", 3);//类型3为打开APP，其他行为请参考接口文档设置
@@ -101,8 +102,9 @@ public class PushNcMsg {
                 URLEncoder.encode(String.valueOf(System.currentTimeMillis() / 1000), "UTF-8"),
                 URLEncoder.encode(deviceTokens.toString(), "UTF-8"),
                 URLEncoder.encode(payload.toString(), "UTF-8"));
-
+        System.out.println("postBody:" + postBody);
         String postUrl = apiUrl + "?nsp_ctx=" + URLEncoder.encode("{\"ver\":\"1\", \"appId\":\"" + appId + "\"}", "UTF-8");
+        System.out.println("postUrl:" + postUrl);
         String response = httpPost(postUrl, postBody, 5000, 5000);
         System.out.println("通知发送：" + response);
     }

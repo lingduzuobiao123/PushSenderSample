@@ -24,7 +24,8 @@ public class XiaomiNCMsg {
 
     public static void main(String[] strs) throws IOException, ParseException {
         Constants.useOfficial();
-        String regId = "LepET2v2u7iNIcyKsjLFFfyl3IUjDKL/BRNjDTm7J0owNbLm8ONQe8U3Cm+6XLPm";
+        String regId = "5xc/9eu4YC1NvS/HUo7GirN3b25Q01eN5MDT76I0qfrjNpEGBIR3ud2EFdErv/6c";
+        regId = "t3fb5OQolxyLmX9uqYXbmfFRfU5z6V9XNkfRPVnXj4wj2FLzWgOl5ChmcbVhnqUQ";
         Sender sender = new Sender(APP_SECRET_KEY);
         String messagePayload = getJSONObject().toString()/*URLEncoder.encode(getJSONObject().toString(), "UTF-8")*/;
         String title = " notification title";
@@ -36,8 +37,9 @@ public class XiaomiNCMsg {
 //                .restrictedPackageName(MY_PACKAGE_NAME)
                 .notifyType(-1)     // 以上三种效果都有
                 .passThrough(1)  // 1表示透传消息, 0表示通知栏消息(默认是通知栏消息)
-//                .extra(Constants.EXTRA_PARAM_NOTIFY_EFFECT, Constants.NOTIFY_ACTIVITY)
+                .extra(Constants.EXTRA_PARAM_NOTIFY_EFFECT, Constants.NOTIFY_LAUNCHER_ACTIVITY)
                 .build();
+        System.out.println("发送内容：" + message.toString());
         Result result = sender.send(message, regId, 3); //根据regID，发送消息到指定设备上
         System.out.println("发送：" + result);
     }
